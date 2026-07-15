@@ -63,9 +63,9 @@ export function InputPanel({ onGenerate, isLoading }: InputPanelProps) {
               value={documentUrl}
               onChange={(e) => setDocumentUrl(e.target.value)}
               placeholder="Google Docs or Microsoft SharePoint / OneDrive link"
-              className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-500/30 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100"
+              className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-500/30"
             />
-            <p className="text-xs leading-relaxed text-slate-500 dark:text-slate-400">
+            <p className="text-xs leading-relaxed text-slate-500">
               Supports{" "}
               <span className="font-medium">Google Docs</span> and{" "}
               <span className="font-medium">Microsoft Word</span> links
@@ -89,21 +89,21 @@ export function InputPanel({ onGenerate, isLoading }: InputPanelProps) {
             onClick={() => fileInputRef.current?.click()}
             className={`flex cursor-pointer flex-col items-center justify-center gap-2 rounded-xl border-2 border-dashed px-4 py-8 text-center transition sm:px-6 sm:py-10 ${
               dragActive
-                ? "border-sky-500 bg-sky-50 dark:bg-sky-950/40"
-                : "border-slate-300 bg-slate-50 hover:border-sky-400 hover:bg-sky-50/50 dark:border-slate-600 dark:bg-slate-800/50 dark:hover:border-sky-500 dark:hover:bg-slate-800"
+                ? "border-sky-500 bg-sky-50"
+                : "border-slate-300 bg-slate-50 hover:border-sky-400 hover:bg-sky-50/50"
             }`}
           >
             <UploadCloud className="size-7 text-sky-500" />
             {file ? (
-              <div className="flex items-center gap-2 text-sm font-medium text-slate-700 dark:text-slate-200">
+              <div className="flex items-center gap-2 text-sm font-medium text-slate-700">
                 <FileText className="size-4" /> {file.name}
               </div>
             ) : (
               <>
-                <p className="text-sm font-medium text-slate-700 dark:text-slate-200">
+                <p className="text-sm font-medium text-slate-700">
                   Drag &amp; drop a file here, or click to browse
                 </p>
-                <p className="text-xs text-slate-500 dark:text-slate-400">
+                <p className="text-xs text-slate-500">
                   Supports .docx, .pdf, .html, .txt, .md
                 </p>
               </>

@@ -198,7 +198,7 @@ export function OutputPanel({
         </TabsContent>
 
         <TabsContent value="preview" className="mt-3 flex flex-col lg:min-h-0 lg:flex-1">
-          <div className="scrollbar-thin min-h-[320px] overflow-auto rounded-xl border border-slate-200 bg-white p-4 dark:border-slate-700 sm:min-h-[380px] sm:p-6 lg:min-h-0 lg:flex-1">
+          <div className="scrollbar-thin min-h-[320px] overflow-auto rounded-xl border border-slate-200 bg-white p-4 sm:min-h-[380px] sm:p-6 lg:min-h-0 lg:flex-1">
             {empty ? (
               <p className="text-sm text-slate-400">
                 Article preview will appear here.
@@ -214,7 +214,7 @@ export function OutputPanel({
       </Tabs>
 
       {sourceNote && (
-        <p className="mt-2 shrink-0 text-xs text-slate-500 dark:text-slate-400">
+        <p className="mt-2 shrink-0 text-xs text-slate-500">
           {sourceNote}
         </p>
       )}
