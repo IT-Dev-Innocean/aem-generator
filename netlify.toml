@@ -1,0 +1,20 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+  functions = "netlify/functions"
+
+[functions]
+  node_bundler = "esbuild"
+
+# Proxy must be declared before the SPA fallback.
+[[redirects]]
+  from = "/api/proxy-fetch"
+  to = "/.netlify/functions/proxy-fetch"
+  status = 200
+  force = true
+
+# SPA client-side routes (React Router) — avoid Netlify 404 on refresh / new tab.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

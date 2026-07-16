@@ -42,7 +42,14 @@ function createProxyMiddleware(): Connect.NextHandleFunction {
         return;
       }
 
-      const response = await fetch(target, { redirect: "follow" });
+      const response = await fetch(target, {
+        redirect: "follow",
+        headers: {
+          "User-Agent":
+            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+          Accept: "*/*",
+        },
+      });
       res.statusCode = response.status;
 
       // Node fetch decompresses gzip/br bodies automatically; do not forward
