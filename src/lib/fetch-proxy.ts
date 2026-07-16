@@ -4,6 +4,7 @@ const ALLOWED_HOSTS = [
   "onedrive.live.com",
   "docs.google.com",
   "drive.google.com",
+  "drive.usercontent.google.com",
 ];
 
 function isAllowedFetchUrl(url: string): boolean {

@@ -1,4 +1,4 @@
-import { FileCode2, type LucideIcon } from 'lucide-react';
+import { FileCode2, Newspaper, type LucideIcon } from 'lucide-react';
 
 export type BrandId = 'hyundai' | 'kia';
 
@@ -51,6 +51,14 @@ export const BRANDS: Record<BrandId, BrandConfig> = {
         description: 'Konversi Google Docs, Word, atau upload file menjadi HTML artikel KIA.',
         href: '/kia/article-generator',
         icon: FileCode2,
+      },
+      {
+        id: 'news-generator',
+        title: 'News Generator',
+        description:
+          'Generate press release HTML (ID & EN) dari folder Google Drive atau upload 2 file terpisah.',
+        href: '/kia/news-generator',
+        icon: Newspaper,
       },
     ],
   },

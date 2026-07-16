@@ -44,7 +44,7 @@ const MAMMOTH_STYLE_MAP = [
   "p[style-name='Heading 4'] => h3:fresh",
 ];
 
-async function parseDocxBuffer(arrayBuffer: ArrayBuffer): Promise<string> {
+export async function parseDocxBuffer(arrayBuffer: ArrayBuffer): Promise<string> {
   const result = await mammoth.convertToHtml(
     { arrayBuffer },
     { styleMap: MAMMOTH_STYLE_MAP }
@@ -109,7 +109,7 @@ async function parsePdfFile(file: File): Promise<string> {
   return plainTextToHtml(text);
 }
 
-async function fileToSemanticHtml(
+export async function fileToSemanticHtml(
   file: File
 ): Promise<{ html: string; note: string }> {
   const name = file.name.toLowerCase();
