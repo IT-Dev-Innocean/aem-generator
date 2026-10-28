@@ -29,12 +29,12 @@ export const BRANDS: Record<BrandId, BrandConfig> = {
     logoAlt: 'Hyundai Motor Indonesia',
     menus: [
       {
-        id: 'article-generator',
-        title: 'Article Generator',
-        description: 'Konversi dokumen menjadi HTML artikel untuk konten website Hyundai.',
-        href: '/hyundai/article-generator',
+        id: 'article-release-generator',
+        title: 'Article & Press Release Generator',
+        description:
+          'Generate HTML press release (ID & EN) + CMS title dari Google Drive folder atau upload 2 file.',
+        href: '/hyundai/generator-article-release',
         icon: FileCode2,
-        disabled: true,
       },
     ],
   },

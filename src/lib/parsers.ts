@@ -29,6 +29,12 @@ export interface GeneratedArticle {
   locale: ArticleLocale;
   filename: string;
   html: string;
+  /** CMS page title (max 100 chars) for AEM copy-paste. */
+  cmsTitle?: string;
+  /** SEO meta title (50–70 chars). */
+  metaTitle?: string;
+  /** SEO meta description (140–150 chars). */
+  metaDescription?: string;
 }
 
 export interface GenerateResult {
@@ -57,11 +63,23 @@ async function parseDocxFile(file: File): Promise<string> {
 }
 
 async function parsePdfFile(file: File): Promise<string> {
-  const pdfjs = await import("pdfjs-dist");
-  const workerSrc = (
-    await import("pdfjs-dist/build/pdf.worker.min.mjs?url")
-  ).default;
-  pdfjs.GlobalWorkerOptions.workerSrc = workerSrc;
+  const isNode = typeof window === "undefined";
+  const pdfjs = isNode
+    ? await import("pdfjs-dist/legacy/build/pdf.mjs")
+    : await import("pdfjs-dist");
+
+  if (isNode) {
+    const { createRequire } = await import(/* @vite-ignore */ "node:module");
+    const require = createRequire(import.meta.url);
+    pdfjs.GlobalWorkerOptions.workerSrc = require.resolve(
+      "pdfjs-dist/legacy/build/pdf.worker.mjs"
+    );
+  } else {
+    const workerSrc = (
+      await import("pdfjs-dist/build/pdf.worker.min.mjs?url")
+    ).default;
+    pdfjs.GlobalWorkerOptions.workerSrc = workerSrc;
+  }
 
   const arrayBuffer = await file.arrayBuffer();
   const pdf = await pdfjs.getDocument({ data: arrayBuffer }).promise;

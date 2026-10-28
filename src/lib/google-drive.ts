@@ -15,9 +15,10 @@ const FOLDER_ID_RE =
 const FILE_ID_RE =
   /drive\.google\.com\/(?:file\/d\/|open\?id=|uc\?.*(?:\?|&)id=)([a-zA-Z0-9_-]+)/i;
 
-const EN_NAME_RE = /(?:^|[\[(\s_-])en(?:[\])\s_-]|$)|english|versi\s*inggris/i;
+const EN_NAME_RE =
+  /(?:^|[\[(\s_-])(?:eng|en)(?:[\])\s._-]|$)|\benglish\b|versi\s*inggris/i;
 const ID_NAME_RE =
-  /(?:^|[\[(\s_-])id(?:[\])\s_-]|$)|bahasa\s*indonesia|indonesian|versi\s*indonesia/i;
+  /(?:^|[\[(\s_-])(?:idn|id)(?:[\])\s._-]|$)|bahasa\s*indonesia|\bindonesian\b|versi\s*indonesia/i;
 
 export function extractGoogleDriveFolderId(url: string): string | null {
   const m = FOLDER_ID_RE.exec(url.trim());
@@ -45,8 +46,8 @@ export function detectLocaleFromFileName(name: string): ArticleLocale | null {
   if (hasEn && !hasId) return "en";
   if (hasId && !hasEn) return "id";
   // Prefer explicit [EN]/[ID] markers when both patterns somehow match.
-  if (/\[?\s*en\s*\]/i.test(name)) return "en";
-  if (/\[?\s*id\s*\]/i.test(name)) return "id";
+  if (/\[?\s*eng\s*\]?/i.test(name)) return "en";
+  if (/\[?\s*idn?\s*\]?/i.test(name)) return "id";
   return null;
 }
 
@@ -149,10 +150,10 @@ export function pickLocaleFiles(files: DriveFileEntry[]): {
 } {
   const en =
     files.find((f) => f.locale === "en") ??
-    files.find((f) => /\[?\s*en\s*\]/i.test(f.name));
+    files.find((f) => /\[?\s*eng?\s*\]?/i.test(f.name) && !/\bidn?\b/i.test(f.name));
   const id =
     files.find((f) => f.locale === "id") ??
-    files.find((f) => /\[?\s*id\s*\]/i.test(f.name));
+    files.find((f) => /\[?\s*idn?\s*\]?/i.test(f.name) && !/\beng\b/i.test(f.name));
 
   // Fallback: if exactly 2 files and locales unclear, order by name.
   if ((!en || !id) && files.length === 2) {

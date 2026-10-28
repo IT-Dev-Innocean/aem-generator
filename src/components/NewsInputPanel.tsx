@@ -14,6 +14,7 @@ import type { GenerateNewsInput, NewsInputMode } from "@/lib/news-parsers";
 interface NewsInputPanelProps {
   onGenerate: (input: GenerateNewsInput) => void;
   isLoading: boolean;
+  generateLabel?: string;
 }
 
 const ACCEPTED = ".docx,.pdf,.html,.htm,.txt,.md";
@@ -93,7 +94,11 @@ function FileDropZone({
   );
 }
 
-export function NewsInputPanel({ onGenerate, isLoading }: NewsInputPanelProps) {
+export function NewsInputPanel({
+  onGenerate,
+  isLoading,
+  generateLabel = "Generate News HTML",
+}: NewsInputPanelProps) {
   const [mode, setMode] = React.useState<NewsInputMode>("link");
   const [documentUrl, setDocumentUrl] = React.useState("");
   const [fileId, setFileId] = React.useState<File | null>(null);
@@ -139,8 +144,8 @@ export function NewsInputPanel({ onGenerate, isLoading }: NewsInputPanelProps) {
                 paste a{" "}
                 <span className="font-medium">Google Drive folder</span> that
                 contains both{" "}
-                <span className="font-medium">[EN]</span> and{" "}
-                <span className="font-medium">[ID]</span> press release files —
+                <span className="font-medium">[IDN]</span> /{" "}
+                <span className="font-medium">[ENG]</span> press release files —
                 both HTML outputs are generated automatically.
               </p>
               <p>
@@ -188,7 +193,7 @@ export function NewsInputPanel({ onGenerate, isLoading }: NewsInputPanelProps) {
             </>
           ) : (
             <>
-              <Sparkles /> Generate News HTML
+              <Sparkles /> {generateLabel}
             </>
           )}
         </Button>

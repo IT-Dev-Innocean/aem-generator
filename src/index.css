@@ -65,11 +65,51 @@ body {
 }
 .article-preview ul,
 .article-preview ol {
-  margin: 0;
-  padding-left: 1.25rem;
+  margin: 0 0 0 25px;
+  padding-left: 18px;
+  list-style-type: disc;
+}
+.article-preview ol {
+  list-style-type: decimal;
 }
 .article-preview li {
-  margin-bottom: 0.35rem;
+  display: list-item;
+  margin-bottom: 4px;
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+.hyundai-article-preview {
+  font-size: 16px;
+  line-height: 1.4;
+  color: #1f2937;
+}
+.hyundai-article-preview h3 {
+  font-size: 24px;
+  line-height: 1.4;
+  font-weight: 700;
+  margin: 0 0 8px;
+}
+.hyundai-article-preview p {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.4;
+}
+.hyundai-article-preview ul {
+  margin: 0 0 0 25px;
+  padding-left: 18px;
+  list-style-type: disc;
+}
+.hyundai-article-preview ul.key-points,
+.hyundai-article-preview ul:first-of-type {
+  font-style: italic;
+}
+.hyundai-article-preview li {
+  display: list-item;
+  margin-bottom: 4px;
+}
+.hyundai-article-preview strong {
+  font-weight: 700;
 }
 .article-preview a {
   color: rgb(0, 170, 210);
